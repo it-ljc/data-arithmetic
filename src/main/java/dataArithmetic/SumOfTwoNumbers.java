@@ -1,6 +1,9 @@
 package dataArithmetic;
 
+import org.junit.Test;
+
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class SumOfTwoNumbers {
 //    题目：两数之和
@@ -32,8 +35,16 @@ public class SumOfTwoNumbers {
         System.out.println("结果=" + Arrays.toString(a));
     }
 
+    /**
+     * 方法一 暴力破解
+     * 时间复杂度O(n^2) 空间复杂度O(1)
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
     public static int[] twoSum(int[] nums, int target) {
-        // 暴力破解法 时间复杂度O(n^2)
+        // 暴力破解法 时间复杂度O(n^2) 空间复杂度O(1)
         // 数组长度，防止循环多次初始化，耗费性能
         int len = nums.length;
         for (int i = 0; i < len - 1; i++) {
@@ -44,6 +55,28 @@ public class SumOfTwoNumbers {
             }
         }
         return null;
+    }
+
+    /**
+     * 方法二 HashMap法
+     * 时间复杂度O(n) 空间复杂度O(n)
+     */
+    @Test
+    public void HashMapWayTest() {
+        int[] nums = {2, 11, 15, 7};
+        int target = 9;
+        // 时间复杂度O(n) 空间复杂度O(n)
+        // 数组长度，防止循环多次初始化，耗费性能
+        int len = nums.length;
+        HashMap<Integer, Integer> hashMap = new HashMap<Integer, Integer>(len - 1);
+        for (int i = 0; i < len; i++) {
+            // key是数组中数字 value是数组下标 将值存入hashMap中
+            hashMap.put(nums[i], i);
+            // 通过containsKey方法来遍历得出结果
+            if (hashMap.containsKey(target - nums[i])) {
+                System.out.println(Arrays.toString(new int[]{hashMap.get(target - nums[i]), i}));
+            }
+        }
     }
 
 }
