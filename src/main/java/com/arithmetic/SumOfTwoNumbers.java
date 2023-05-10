@@ -1,4 +1,4 @@
-package dataArithmetic;
+package com.arithmetic;
 
 import org.junit.Test;
 

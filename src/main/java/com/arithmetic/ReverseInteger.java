@@ -1,4 +1,4 @@
-package dataArithmetic;
+package com.arithmetic;
 
 /**
  * 整数反转
