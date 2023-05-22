@@ -36,7 +36,7 @@ public class LongestPublicPrefix {
         System.out.println(longestPublicPrefix);
     }
 
-    // TODO这道题多种解法，有机会再尝试
+    // TODO 这道题多种解法，有机会再尝试
     /**
      * 方法一 横向扫描
      *
