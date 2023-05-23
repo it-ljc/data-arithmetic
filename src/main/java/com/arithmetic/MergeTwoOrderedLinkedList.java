@@ -38,7 +38,8 @@ public class MergeTwoOrderedLinkedList {
         l2.next = new ListNode(3);
         l2.next.next = new ListNode(4);
         // 控制台输出合成链表
-        printList(mergeTwoLists(l1, l2));
+//        printList(mergeTwoLists(l1, l2));
+        printList(mergeTwoListsWayTwo(l1, l2));
     }
 
     /**
@@ -64,6 +65,35 @@ public class MergeTwoOrderedLinkedList {
             return l2;
         }
     }
+
+    /**
+     * 方法二 迭代法
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public static ListNode mergeTwoListsWayTwo(ListNode l1, ListNode l2) {
+        // 实例化哑节点链表 方便插入链表的前和后不会报错
+        ListNode prehead = new ListNode(-1);
+
+        ListNode prev = prehead;
+        while (null != l1 && null != l2) {
+            if (l1.val <= l2.val) {
+                prev.next = l1;
+                l1 = l1.next;
+            } else {
+                prev.next = l2;
+                l2 = l2.next;
+            }
+            prev = prev.next;
+        }
+        // 合并后l1和l2最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        prev.next = l1 == null ? l2 : l1;
+
+        return prehead.next;
+    }
+
 
     public static void printList(ListNode head) {
         ListNode cur = head;
