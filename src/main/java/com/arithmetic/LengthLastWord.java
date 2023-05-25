@@ -35,7 +35,8 @@ public class LengthLastWord {
 
     public static void main(String[] args) {
         String s = "   fly me   to   the moon  ";
-        System.out.println(lengthOfLastWord(s));
+//        System.out.println(lengthOfLastWord(s));
+        System.out.println(lengthOfLastWordWayTwo(s));
     }
 
     public static int lengthOfLastWord(String s) {
@@ -46,6 +47,27 @@ public class LengthLastWord {
             map.put(i, arr);
         }
         return map.get(0).length();
+    }
+
+    /**
+     * 反向遍历
+     *
+     * @param s
+     * @return
+     */
+    public static int lengthOfLastWordWayTwo(String s) {
+        // 数组下标
+        int index = s.length() - 1;
+        // 最后一个单词长度
+        int length = 0;
+        while (s.charAt(index) == ' ') {
+            index--;
+        }
+        while (index >= 0 && s.charAt(index) != ' ') {
+            length = length + 1;
+            index--;
+        }
+        return length;
     }
 
 
