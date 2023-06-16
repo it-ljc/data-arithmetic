@@ -49,7 +49,7 @@ public class MergeTwoOrderedArrays {
     public static void main(String[] args) {
         int[] nums1 = new int[]{1, 2, 3, 0, 0, 0};
         int[] nums2 = new int[]{2, 5, 6};
-//        merge(nums1, 3, nums2, 3);
+        mergeTwoWay(nums1, 3, nums2, 3);
     }
 
     /**
@@ -68,18 +68,32 @@ public class MergeTwoOrderedArrays {
     }
 
     /**
-     * 双指针
-     *
+     * 方法二：双指针
+     * TODO 之后有空再看看
      * @param nums1
      * @param m
      * @param nums2
      * @param n
      */
     public static void mergeTwoWay(int[] nums1, int m, int[] nums2, int n) {
-        for (int i = 0; i < n; i++) {
-            nums1[m + i] = nums2[i];
+        int p1 = 0, p2 = 0;
+        int[] sorted = new int[m + n];
+        int cur;
+        while (p1 < m || p2 < n) {
+            if (p1 == m) {
+                cur = nums2[p2++];
+            } else if (p2 == n) {
+                cur = nums1[p1++];
+            } else if (nums1[p1] < nums2[p2]) {
+                cur = nums1[p1++];
+            } else {
+                cur = nums2[p2++];
+            }
+            sorted[p1 + p2 - 1] = cur;
         }
-        Arrays.sort(nums1);
+        for (int i = 0; i != m + n; ++i) {
+            nums1[i] = sorted[i];
+        }
     }
 
 }
